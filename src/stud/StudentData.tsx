@@ -8,11 +8,11 @@ import {
   Image,
   Modal,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase";
 
-const UploadStudentData = () => {
+const UploadStudentData = ({navigation}) => {
   const options = ["1st", "2nd", "3rd", "4th"];
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -76,7 +76,10 @@ const UploadStudentData = () => {
         </Modal>
       </View>
       <View style={styles.container}>
-        <Text style={styles.heading}>Upload Student Data</Text>
+        <View style={styles.heading}>
+          <Ionicons name="arrow-back" size={24} color="black" onPress={() => navigation.goBack()} />
+          <Text style={styles.headingText}>Upload Student Data</Text>
+        </View>
         <Image
           source={{
             uri: "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
@@ -195,6 +198,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
+  heading: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: 'center',
+    paddingBottom: 20,
+  },
+  headingText: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: "600",
+    textAlign: "center",
+  },
   image: {
     width: 100,
     height: 100,
@@ -207,11 +222,6 @@ const styles = StyleSheet.create({
   emailText: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 20,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: "bold",
     marginBottom: 20,
   },
   inputContainer: {

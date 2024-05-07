@@ -41,20 +41,20 @@ const HostelHomePage = ({ navigation }) => {
         </View>
         <Text style={styles.title}>Hostel Allotment</Text>
         <Text style={styles.subtitle}>Find Your Cozy Corner</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("StudentData")}>
           <Feather name="user" size={24} color="white" />
           <Text style={styles.buttonText}>Update student Data</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HostelAllotmentPage")}>
           <AntDesign name="form" size={24} color="white" />
-          <Text style={styles.buttonText}>Apply for Allotment</Text>
+          <Text style={styles.buttonText}>Check your hostel Status</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HostelSearch")}>
           <FontAwesome5 name="building" size={24} color="white" />
           <Text style={styles.buttonText}>Search Hostel Detail</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
-        <FontAwesome6 name="contact-card" size={24} color="white" />
+          <FontAwesome6 name="contact-card" size={24} color="white" />
           <Text style={styles.buttonText}>Contact Us</Text>
         </TouchableOpacity>
         <View style={styles.activities}>

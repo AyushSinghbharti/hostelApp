@@ -8,13 +8,14 @@ import StartingPage from "./src/auth/StartingPage";
 import HomePage from "./src/stud/HomePage";
 import HostelSearch from "./src/stud/HostelSearch";
 import StudentData from "./src/stud/StudentData";
+import HostelAllotmentPage from "./src/stud/HostelAllotmentPage";
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="StartingPage"
           component={StartingPage}
           options={{ headerShown: false }}
@@ -38,10 +39,15 @@ function App() {
           name="HostelSearch"
           component={HostelSearch}
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen
           name="StudentData"
           component={StudentData}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HostelAllotmentPage"
+          component={HostelAllotmentPage}
           options={{ headerShown: false }}
         />
 
