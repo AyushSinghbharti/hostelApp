@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  Platform,
 } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
@@ -28,10 +29,15 @@ const WelcomeScreen = ({navigation}) => {
     }
   }
 
+  let os = '';
+  if(Platform.OS === "web") os = 'web';
+  else os = 'mobile';
+
   return (
     <ImageBackground
       source={userType === "administrator" ? administratorImage : studentImage}
-      resizeMode="cover"
+      // resizeMode="cover"
+       resizeMode = {os === 'web' ? "contain" : "cover"}
       style={[
         styles.container,
         { backgroundColor: userType === "administrator" ? "#ECE2E5" : "#fff" },

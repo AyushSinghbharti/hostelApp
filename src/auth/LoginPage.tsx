@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import CustomInput from "../Components/CustomInput";
@@ -34,8 +35,13 @@ const LoginPage = ({ navigation }) => {
         } else alert(error);
       });
   };
+
+  let isWeb = false;
+  if(Platform.OS === "web") isWeb = true;
+  else isWeb = false;
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: isWeb ? "30%" : "100%" }, {alignSelf: 'center'}]}>
       <Text style={styles.heading}>Login to your account</Text>
       <Text style={styles.subHeading}>Please sign in to your account </Text>
       <View style={{ paddingBottom: 15 }}>
@@ -64,7 +70,7 @@ const LoginPage = ({ navigation }) => {
       >
         Forgot Password?
       </Text>
-      <CustomButton title={"Login"} onPress={loginUser} />
+      <CustomButton title={"Login"} onPress={loginUser} style={{alignSelf: 'center'}}/>
 
       <View style={styles.dividerHeading}>
         <View style={styles.divider} />

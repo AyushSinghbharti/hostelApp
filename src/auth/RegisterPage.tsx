@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Alert,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import CustomInput from "../Components/CustomInput";
@@ -44,8 +45,12 @@ const RegisterPage = ({ navigation }) => {
       });
   };
 
+  let isWeb = false;
+  if(Platform.OS === "web") isWeb = true;
+  else isWeb = false;
+  
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: isWeb ? "30%" : "100%" }, {alignSelf: 'center'}]}>
       <Text style={styles.heading}>Create your new account</Text>
       <Text style={styles.subHeading}>
         Create an account to start looking for the food you like{" "}
@@ -94,7 +99,7 @@ const RegisterPage = ({ navigation }) => {
           <Text style={styles.innerfooterText}>Privacy Policy</Text>{" "}
         </Text>
       </TouchableOpacity>
-      <CustomButton title={"Sign In"} onPress={registerUser} />
+      <CustomButton title={"Sign In"} onPress={registerUser} style={{alignSelf: 'center'}}/>
 
       <View style={styles.dividerHeading}>
         <View style={styles.divider} />
