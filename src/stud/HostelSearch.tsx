@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -8,16 +8,31 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CustomHostelCard from "../Components/CustomHostelCard";
 import { dataType } from "../dummyData/dataInterface";
 import hostelData from "../dummyData/hostelData.json";
 
-const HostelAllotmentSystem = () => {
+const HostelAllotmentSystem = ({ navigation }) => {
   const items: dataType[] = hostelData;
+  const [filteredItems, setFilteredItems] = useState<dataType[]>(hostelData);
+  const [search, setSearch] = useState("");
+
+  const handleSearch = () => {
+    const filtered = hostelData.filter((item) =>
+      item.hostel_name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
+
+  useEffect(() => {
+    handleSearch();
+  }, [search]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+      <AntDesign name="left" size={25} color="white" style={{marginLeft: 10}} onPress={() => navigation.navigate("HomePage")} />
         <Text style={styles.headerText}>Hostel Allotment System</Text>
       </View>
       <View style={styles.searchContainer}>
@@ -25,15 +40,21 @@ const HostelAllotmentSystem = () => {
           style={styles.searchInput}
           placeholder="Search Hostel"
           placeholderTextColor="#999"
+          value={search}
+          onChangeText={(text) => setSearch(text)}
         />
         <TouchableOpacity style={styles.searchButton}>
           <Ionicons name="search" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.hostelList}>
-        {items.map((item, index) => (
-          <CustomHostelCard key={index} {...item} index={index}/>
-        ))}
+        {filteredItems.length === 0
+          ? items.map((item, index) => (
+              <CustomHostelCard key={index} {...item} index={item.index} />
+            ))
+          : filteredItems.map((item, index) => (
+              <CustomHostelCard key={index} {...item} index={item.index} />
+            ))}
       </ScrollView>
       <View style={styles.footer}>
         <Text style={styles.footerText}>© 2024 Hostel Allotment System</Text>
@@ -48,13 +69,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   header: {
+    flexDirection: "row",
+    justifyContent: 'space-between',
     paddingTop: 25,
     paddingVertical: 10,
     backgroundColor: "#3366FF",
     alignItems: "center",
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 20,
+    paddingHorizontal: 20,
     color: "#fff",
     fontWeight: "bold",
   },
@@ -130,6 +154,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   footer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
     alignItems: "center",
     paddingVertical: 10,
     backgroundColor: "#3366FF",

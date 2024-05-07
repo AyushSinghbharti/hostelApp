@@ -47,9 +47,6 @@ function generateRandomIndex() {
 const CustomHostelCard = (props) => {
   const item: dataType = props;
   const index = props.index;
-  {
-    console.log(item.images);
-  }
   return (
     <View style={styles.hostelCard}>
       <Image
@@ -74,8 +71,10 @@ const CustomHostelCard = (props) => {
           <Text style={styles.hostelInfo}>Vacancy: {item.vacancy}</Text>
         </View>
         <View style={[styles.infoRow, {}]}>
-          <Ionicons name="calendar" size={20} color="#3366FF" />
-          <Text style={styles.hostelInfo}>Check-in: {item.reviews}</Text>
+          <Ionicons name="star" size={20} color="#3366FF" />
+          <Text style={styles.hostelInfo}>
+            Rating: {item.rating} <Text style={{ fontSize: 12 }}>/5</Text>
+          </Text>
           <TouchableOpacity
             style={{ right: 0, marginRight: 10, position: "absolute" }}
           >

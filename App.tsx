@@ -7,26 +7,16 @@ import RegisterPage from "./src/auth/RegisterPage";
 import StartingPage from "./src/auth/StartingPage";
 import HomePage from "./src/stud/HomePage";
 import HostelSearch from "./src/stud/HostelSearch";
-
+import StudentData from "./src/stud/StudentData";
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="HostelSearch"
-          component={HostelSearch}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="StartingPage"
           component={StartingPage}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HomePage"
-          component={HomePage}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -39,6 +29,22 @@ function App() {
           component={RegisterPage}
           options={{ headerShown: false }}
         />
+          <Stack.Screen
+            name="HomePage"
+            component={HomePage}
+            options={{ headerShown: false }}
+          />
+        <Stack.Screen
+          name="HostelSearch"
+          component={HostelSearch}
+          options={{ headerShown: false }}
+        /> */}
+        <Stack.Screen
+          name="StudentData"
+          component={StudentData}
+          options={{ headerShown: false }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

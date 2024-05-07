@@ -1,27 +1,28 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome6, Feather, AntDesign } from '@expo/vector-icons';
 import CustomActivityText from '../Components/CustomActivityText';
+import { app } from '../../firebase';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-const HostelHomePage = () => {
+const HostelHomePage = ({ navigation }) => {
   const image = { uri: 'https://images.unsplash.com/photo-1596276020587-8044fe049813?q=80&w=1878&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
   const scrollViewRef = useRef(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({
-          y: 0,
-          animated: false,
-        });
-        scrollViewRef.current.scrollToEnd({
-          animated: true,
-          duration: 4000, // Adjust duration for slower scrolling
-        });
+    const auth = getAuth(app);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        setUsername(user.displayName);
       }
-    }, 3000); // Adjust the interval time as needed
+      else {
+        setUsername("userName");
+      }
+    });
 
-    return () => clearInterval(interval);
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -31,7 +32,7 @@ const HostelHomePage = () => {
     >
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.welcomeText}>Welcome! <Text style={[styles.userName, { fontWeight: '400' }]}>User Name</Text></Text>
+          <Text style={styles.welcomeText}>Welcome! <Text style={[styles.userName, { fontWeight: '400' }]}>{username}</Text></Text>
           <View style={styles.userInfo}>
             <TouchableOpacity style={styles.notificationButton}>
               <FontAwesome5 name="bell" size={24} color="#333" />
@@ -41,20 +42,24 @@ const HostelHomePage = () => {
         <Text style={styles.title}>Hostel Allotment</Text>
         <Text style={styles.subtitle}>Find Your Cozy Corner</Text>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Search Hostels</Text>
+          <Feather name="user" size={24} color="white" />
+          <Text style={styles.buttonText}>Update student Data</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
+          <AntDesign name="form" size={24} color="white" />
           <Text style={styles.buttonText}>Apply for Allotment</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Hostel Rules</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HostelSearch")}>
+          <FontAwesome5 name="building" size={24} color="white" />
+          <Text style={styles.buttonText}>Search Hostel Detail</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
+        <FontAwesome6 name="contact-card" size={24} color="white" />
           <Text style={styles.buttonText}>Contact Us</Text>
         </TouchableOpacity>
         <View style={styles.activities}>
           <Text style={styles.activitiesTitle}>Popular Activities:</Text>
-          <ScrollView showsVerticalScrollIndicator={false} ref={scrollViewRef}>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <CustomActivityText name="Movie" iconLogo="tv" />
             <CustomActivityText name="Football" iconLogo="football-ball" />
             <CustomActivityText name="Coding event" iconLogo="code" />
@@ -120,6 +125,7 @@ const styles = StyleSheet.create({
     color: '#666', // Adjust color for better contrast
   },
   button: {
+    flexDirection: 'row',
     backgroundColor: '#ff6f61',
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -127,6 +133,8 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
+    gap: 15,
   },
   buttonText: {
     fontSize: 18,

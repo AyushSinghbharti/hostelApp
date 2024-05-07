@@ -6,8 +6,9 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({navigation}) => {
   const [userType, setUserType] = useState(null);
   const administratorImage = {
     uri: "https://www.totaljobs.com/advice/wp-content/uploads/administrator-job-description-1024x576.jpg",
@@ -19,14 +20,15 @@ const WelcomeScreen = () => {
     setUserType(type);
   };
 
+  const moveTologin = () => {
+    if (userType === "administrator") {
+      navigation.navigate("LoginPage");
+    } else if (userType === "student") {
+      navigation.navigate("LoginPage");
+    }
+  }
+
   return (
-    // <View style={[styles.container]}>
-    // <ImageBackground
-    //   style={styles.container}
-    //   source={{
-    //     uri: "https://images.unsplash.com/photo-1612838320302-4b3b3b3b3b3b",
-    //   }}
-    // >
     <ImageBackground
       source={userType === "administrator" ? administratorImage : studentImage}
       resizeMode="cover"
@@ -36,7 +38,15 @@ const WelcomeScreen = () => {
       ]}
       imageStyle={{ position: "absolute", bottom: 450, marginTop: 50 }}
     >
-      <View style={{position: 'absolute', bottom: 150, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View
+        style={{
+          position: "absolute",
+          bottom: 150,
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Text style={styles.welcomeText}>Welcome to the App</Text>
         <View style={styles.optionsContainer}>
           <TouchableOpacity
@@ -61,8 +71,22 @@ const WelcomeScreen = () => {
         {userType && (
           <Text style={styles.welcomeMessage}>Welcome, {userType}!</Text>
         )}
-        
       </View>
+      <TouchableOpacity
+        style={{
+          bottom: 35,
+          position: "absolute",
+          height: 75,
+          width: 150,
+          borderRadius: 50,
+          backgroundColor: "#4CAF50",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onPress={moveTologin}
+      >
+        <AntDesign name="arrowright" size={30} color="white" />
+      </TouchableOpacity>
     </ImageBackground>
     // </View>
   );
