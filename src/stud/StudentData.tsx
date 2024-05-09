@@ -14,6 +14,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { StudColorTheme } from "../Components/ColorTheme";
 
 const UploadStudentData = ({ navigation }) => {
   const yearOption = ["1st", "2nd", "3rd", "4th"];
@@ -46,7 +47,7 @@ const UploadStudentData = ({ navigation }) => {
         setEmail("Email");
       }
     });
-  
+
     const fetchUserData = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "users", email));
@@ -66,7 +67,7 @@ const UploadStudentData = ({ navigation }) => {
         console.error("Error fetching user data:", error);
       }
     };
-  
+
     fetchUserData();
     return () => unsubscribe();
   }, []);
@@ -122,7 +123,7 @@ const UploadStudentData = ({ navigation }) => {
           <Ionicons
             name="arrow-back"
             size={24}
-            color="black"
+            color={StudColorTheme.dark}
             onPress={() => navigation.goBack()}
           />
           <Text style={styles.headingText}>Upload Student Data</Text>
@@ -173,28 +174,29 @@ const UploadStudentData = ({ navigation }) => {
             onPress={() => setModalVisible(true)}
             style={styles.dropdownButton}
           >
-            <Text style={styles.dropdownButtonText}>
-              {selectedOption || year }
-            </Text>
+            <View style={styles.dropdownButtonText}>
+              <Text>{selectedOption || year}</Text>
+            </View>
             <AntDesign name="down" size={16} color="#333" style={styles.icon} />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          onPress={() => setGenderModalVisible(true)}
-          style={[
-            styles.inputContainer,
-            {
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf: "center",
-            },
-          ]}
-        >
-          <AntDesign name="man" size={24} color="#777" style={styles.icon} />
-          <View style={[styles.input, { justifyContent: "center" }]}>
-            <Text style={[{ color: "grey" }]}>{selectedGenderOption}</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.inputContainer}>
+          <AntDesign
+            name="man"
+            size={24}
+            color="#777"
+            style={styles.icon}
+          />
+          <TouchableOpacity
+            onPress={() => setGenderModalVisible(true)}
+            style={styles.dropdownButton}
+          >
+            <View style={styles.dropdownButtonText}>
+              <Text>{selectedGenderOption}</Text>
+            </View>
+            <AntDesign name="down" size={16} color="#333" style={styles.icon} />
+          </TouchableOpacity>
+        </View>
         <View style={styles.inputContainer}>
           <AntDesign name="phone" size={24} color="#777" style={styles.icon} />
           <TextInput
@@ -292,6 +294,7 @@ const styles = StyleSheet.create({
   containerWeb: {
     padding: 20,
     display: "flex",
+    backgroundColor: StudColorTheme.background,
     flex: 1,
     flexDirection: "column",
     marginHorizontal: 20,
@@ -304,6 +307,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   headingText: {
+    color: StudColorTheme.mainDark,
     flex: 1,
     fontSize: 20,
     fontWeight: "600",
@@ -314,16 +318,17 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     marginBottom: 10,
-    borderColor: "black",
     borderWidth: 1,
     resizeMode: "cover",
     alignSelf: "center",
+    borderColor: StudColorTheme.mainDark,
   },
   emailText: {
     fontSize: 16,
     fontWeight: "500",
     marginBottom: 20,
     textAlign: "center",
+    color: StudColorTheme.dark,
   },
   inputContainer: {
     flexDirection: "row",
@@ -333,12 +338,14 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 10,
+    color: StudColorTheme.dark,
   },
   input: {
     flex: 1,
     height: 40,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: StudColorTheme.main,
+    backgroundColor: "white",
     borderRadius: 8,
     paddingHorizontal: 10,
   },
@@ -350,25 +357,32 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
+    textAlign: 'center',
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
   },
   dropdownButton: {
     borderWidth: 1,
-    borderColor: "#ccc",
     borderRadius: 8,
     flexDirection: "row",
     alignItems: "center",
-    width: "90%",
+    flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 10,
+    borderColor: StudColorTheme.main,
+    backgroundColor: "white",
   },
   dropdownButtonText: {
     flex: 1,
   },
   modalContainer: {
     backgroundColor: "#fff",
+    borderColor: StudColorTheme.main,
+    borderBottomWidth: 0,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    borderWidth: 0.5,
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -379,11 +393,11 @@ const styles = StyleSheet.create({
   option: {
     paddingVertical: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: StudColorTheme.mainDark,
   },
   optionText: {
+    color: StudColorTheme.dark,
     fontSize: 16,
-    color: "#333",
   },
 });
 

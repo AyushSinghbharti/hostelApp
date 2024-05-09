@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Platform,
 } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CustomHostelCard from "../Components/CustomHostelCard";
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
+    alignSelf: "center",
   },
   header: {
     flexDirection: "row",

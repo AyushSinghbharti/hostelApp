@@ -12,6 +12,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { StudColorTheme } from "../Components/ColorTheme";
 
 const HostelDetailPage = ({ navigation }) => {
   const [feedbackModalVisible, setFeedbackModalVisible] = useState(false);
@@ -29,7 +30,7 @@ const HostelDetailPage = ({ navigation }) => {
         <Ionicons
           name="arrow-back"
           size={24}
-          color="black"
+          color={StudColorTheme.dark}
           onPress={() => navigation.goBack()}
         />
         <Text style={styles.headingText}>Hostel Detail</Text>
@@ -157,7 +158,7 @@ const HostelDetailPage = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: StudColorTheme.background,
     paddingHorizontal: 20,
   },
   heading: {
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 10,
     flex: 1,
+    color: StudColorTheme.mainDark,
   },
   rowDir: {
     flexDirection: "row",
@@ -180,9 +182,9 @@ const styles = StyleSheet.create({
   },
   mainText: {
     fontWeight: "bold",
-    color: "#333",
     fontSize: 16,
     textAlign: "justify",
+    color: StudColorTheme.mainDark,
   },
   image: {
     width: "100%",
@@ -198,13 +200,13 @@ const styles = StyleSheet.create({
   hostelName: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#333",
+    color: StudColorTheme.dark,
   },
   hostelDetails: {
     fontSize: 14,
     textAlign: "justify",
     marginBottom: 1,
-    color: "#666",
+    color: StudColorTheme.dark,
   },
   section: {
     backgroundColor: "#FFF",
@@ -223,9 +225,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   sectionTitle: {
+    color: StudColorTheme.dark,
     fontSize: 20,
     fontWeight: "bold",
-    color: "#333",
   },
   modalContainer: {
     flex: 1,

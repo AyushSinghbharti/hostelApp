@@ -4,10 +4,10 @@ import { FontAwesome5, FontAwesome6, Feather, AntDesign } from '@expo/vector-ico
 import CustomActivityText from '../Components/CustomActivityText';
 import { app } from '../../firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { StudColorTheme } from '../Components/ColorTheme';
 
 const HostelHomePage = ({ navigation }) => {
   const image = { uri: 'https://images.unsplash.com/photo-1596276020587-8044fe049813?q=80&w=1878&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
-  const scrollViewRef = useRef(null);
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const HostelHomePage = ({ navigation }) => {
           <Text style={styles.welcomeText}>Welcome! <Text style={[styles.userName, { fontWeight: '400' }]}>{username}</Text></Text>
           <View style={styles.userInfo}>
             <TouchableOpacity style={styles.notificationButton}>
-              <FontAwesome5 name="bell" size={24} color="#333" />
+              <FontAwesome5 name="bell" size={24} color={StudColorTheme.dark} />
             </TouchableOpacity>
           </View>
         </View>
@@ -60,10 +60,10 @@ const HostelHomePage = ({ navigation }) => {
         <View style={styles.activities}>
           <Text style={styles.activitiesTitle}>Popular Activities:</Text>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <CustomActivityText name="Movie" iconLogo="tv" />
-            <CustomActivityText name="Football" iconLogo="football-ball" />
-            <CustomActivityText name="Coding event" iconLogo="code" />
-            <CustomActivityText name="Snacks" iconLogo="pizza-slice" />
+            <CustomActivityText name="Movie" iconLogo="tv" textColor={StudColorTheme.dark} iconColor={StudColorTheme.main} />
+            <CustomActivityText name="Football" iconLogo="football-ball" textColor={StudColorTheme.dark} iconColor={StudColorTheme.main} />
+            <CustomActivityText name="Coding event" iconLogo="code" textColor={StudColorTheme.dark} iconColor={StudColorTheme.main} />
+            <CustomActivityText name="Snacks" iconLogo="pizza-slice" textColor={StudColorTheme.dark} iconColor={StudColorTheme.main} />
 
           </ScrollView>
         </View>
@@ -82,20 +82,22 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    backgroundColor: StudColorTheme.background + Math.round(0.8 * 255).toString(16).toUpperCase(),
     padding: 20,
-    borderRadius: 15,
+    borderRadius: 20,
     width: '90%',
     maxWidth: 400,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItems: 'center',
+    alignItems: 'center',
     width: '100%',
     marginBottom: 20,
   },
   welcomeText: {
+    color: StudColorTheme.dark,
     fontSize: 24,
     fontWeight: '500',
   },
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 20,
     marginRight: 10,
-    color: '#333', // Adjust color for better contrast
+    color: StudColorTheme.main,
   },
   notificationButton: {
     padding: 5,
@@ -116,17 +118,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
-    color: '#333', // Adjust color for better contrast
+    color: StudColorTheme.dark, // Adjust color for better contrast
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 20,
     textAlign: 'center',
-    color: '#666', // Adjust color for better contrast
+    color: StudColorTheme.mainDark,
   },
   button: {
     flexDirection: 'row',
-    backgroundColor: '#ff6f61',
+    backgroundColor: StudColorTheme.dark,
+    elevation: 5,
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 25,
@@ -151,25 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#333', // Adjust color for better contrast
-  },
-  activity: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: '#555', // Adjust color for better contrast
-  },
-  feedbackButton: {
-    backgroundColor: '#333',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 25,
-    marginTop: 10,
-    width: '100%',
-    alignItems: 'center',
-  },
-  feedbackButtonText: {
-    fontSize: 18,
-    color: '#fff',
+    color: StudColorTheme.dark,
   },
 });
 
