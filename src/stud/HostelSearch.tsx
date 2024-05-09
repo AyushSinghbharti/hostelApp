@@ -12,28 +12,53 @@ import {
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CustomHostelCard from "../Components/CustomHostelCard";
 import { dataType } from "../dummyData/dataInterface";
-import hostelData from "../dummyData/hostelData.json";
+// import hostelData from "../dummyData/hostelData.json";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const HostelAllotmentSystem = ({ navigation }) => {
-  const items: dataType[] = hostelData;
-  const [filteredItems, setFilteredItems] = useState<dataType[]>(hostelData);
+  // const items: dataType[] = hostelData;
+  const [items, setItems] = useState([]);
+  // const [filteredItems, setFilteredItems] = useState<dataType[]>(hostelData);
+  const [filteredItems, setFilteredItems] = useState<dataType[]>(items);
   const [search, setSearch] = useState("");
 
   const handleSearch = () => {
-    const filtered = hostelData.filter((item) =>
-      item.hostel_name.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredItems(filtered);
+    if (search) {
+      const filtered = items.filter((item) =>
+        item.hostel_name.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredItems(filtered);
+    }
   };
 
   useEffect(() => {
     handleSearch();
   }, [search]);
 
+  useEffect(() => {
+    const fetchFromFirebase = async () => {
+      const querySnapshot = await getDocs(collection(db, "hostels"));
+      const fetchedItems = [];
+      querySnapshot.forEach((doc) => {
+        fetchedItems.push({ id: doc.id, ...doc.data() });
+      });
+      setItems((prevItems) => [...prevItems, ...fetchedItems]);
+    };
+
+    fetchFromFirebase();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <AntDesign name="left" size={25} color="white" style={{marginLeft: 10}} onPress={() => navigation.navigate("HomePage")} />
+        <AntDesign
+          name="left"
+          size={25}
+          color="white"
+          style={{ marginLeft: 10 }}
+          onPress={() => navigation.navigate("HomePage")}
+        />
         <Text style={styles.headerText}>Hostel Allotment System</Text>
       </View>
       <View style={styles.searchContainer}>
@@ -68,11 +93,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    alignSelf: "center",
   },
   header: {
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingTop: 25,
     paddingVertical: 10,
     backgroundColor: "#3366FF",
@@ -156,9 +180,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   footer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    width: '100%',
+    width: "100%",
     alignItems: "center",
     paddingVertical: 10,
     backgroundColor: "#3366FF",

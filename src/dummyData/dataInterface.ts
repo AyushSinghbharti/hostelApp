@@ -1,13 +1,14 @@
 export interface dataType {
-  index: number;
-  hostel_name: string;
-  allotment: number;
-  vacancy: number;
-  images: string;
+  hostelName: string;
+  phoneNumber: string;
   address: string;
-  phone_number: string;
+  allotment: number;
+  amenities: string;
+  vacancy: number;
+  index: number;
+  image: string;
   website: string;
   rating: number;
-  amenities: string;
   reviews: number;
+  cgpa: number,
 }

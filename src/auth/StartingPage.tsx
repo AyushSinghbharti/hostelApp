@@ -23,7 +23,7 @@ const WelcomeScreen = ({navigation}) => {
 
   const moveTologin = () => {
     if (userType === "administrator") {
-      navigation.navigate("LoginPage");
+      navigation.navigate("LoginPageAdmin");
     } else if (userType === "student") {
       navigation.navigate("LoginPage");
     }

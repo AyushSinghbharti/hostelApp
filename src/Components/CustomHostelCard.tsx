@@ -47,17 +47,18 @@ function generateRandomIndex() {
 const CustomHostelCard = (props) => {
   const item: dataType = props;
   const index = props.index;
+
   return (
     <View style={styles.hostelCard}>
       <Image
         source={{
-          uri: item.images + words[index % words.length],
+          uri: `data:image/jpeg;base64,${item.image}`,
         }}
         style={styles.hostelImage}
       />
       <View style={styles.hostelDetails}>
         <Text style={styles.hostelName}>
-          {item.hostel_name} Hostel{"\n"}
+          {item.hostelName} Hostel{"\n"}
           <Text style={{ fontSize: 14, fontWeight: "400" }}>
             {item.address}
           </Text>
