@@ -16,6 +16,7 @@ import HostelStatusAdmin from "./src/admin/HostelStatusAdmin";
 import AddHostelPage from "./src/admin/AddHostelAdmin";
 import StudentDataFetch from "./src/admin/StudentData";
 import HostelAllotmentStatus from "./src/admin/HostelAllotmentStatus";
+import QueryRunningPage from "./src/auth/QueryRunningPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen
+          name="QueryRunningPage"
+          component={QueryRunningPage}
+          options={{ headerShown: false }}
+        /> */}
         {/* <Stack.Screen
           name="StartingPage"
           component={StartingPage}

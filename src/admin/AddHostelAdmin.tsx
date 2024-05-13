@@ -46,16 +46,16 @@ const AddHostelForm = ({ navigation }) => {
       try {
         const docRef = doc(db, "hostels", hostelName);
         await setDoc(docRef, {
-          cgpa: cgpa,
+          cgpa: parseInt(cgpa),
           hostelName: hostelName,
-          allotment: allotment,
-          vacancy: vacancy,
+          allotment: parseInt(allotment),
+          vacancy: parseInt(vacancy),
           address: address,
           image: base64image,
           phoneNumber: phoneNumber,
-          rating: rating,
+          rating: parseInt(rating),
           amenities: amenities,
-          reviews: reviews,
+          reviews: parseInt(reviews),
         });
         console.log(docRef);
         console.log("Document written with ID: ", docRef.id);

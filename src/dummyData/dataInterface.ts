@@ -12,3 +12,17 @@ export interface dataType {
   reviews: number;
   cgpa: number,
 }
+
+export interface studentDataType {
+  studentName: string;
+  email: string;
+  RollNumber: number;
+  cgpa: number;
+  gender: string;
+  mobileNumber: string;
+  guardianAddress: string;
+  guardianContactNumber: string;
+  branch: string;
+  Year: number;
+  hostelAlloted: boolean;
+}

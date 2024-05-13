@@ -44,7 +44,7 @@ const HostelHomePage = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HostelAllotmentStatus")}>
           <AntDesign name="form" size={24} color="white" />
-          <Text style={styles.buttonText}>Hostel Allotment Status</Text>
+          <Text style={styles.buttonText}>Hostel Allottee</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AddHostelPage")}>
           <FontAwesome5 name="building" size={24} color="white" />
