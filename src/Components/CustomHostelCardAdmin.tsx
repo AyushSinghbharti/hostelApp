@@ -30,35 +30,13 @@ const CustomHostelCard = (props) => {
   const index = props.index;
   let indexForStudent = 0;
   const highCGPAStudents = [];
-  // const handleSubmit = async ({hostel}) => {{
-  //     try {
-  //       const docRef = doc(db, "hostelAlloted", hostelName);
-  //       await setDoc(docRef, {
-  //         cgpa: cgpa,
-  //         hostelName: hostelName,
-  //         allotment: allotment,
-  //         vacancy: vacancy,
-  //         address: address,
-  //         image: base64image,
-  //         phoneNumber: phoneNumber,
-  //         rating: rating,
-  //         amenities: amenities,
-  //         reviews: reviews,
-  //       });
-  //       console.log(docRef);
-  //       console.log("Document written with ID: ", docRef.id);
-  //       alert(`Hostel added successfully, ${docRef.id}`);
-  //     } catch (e) {
-  //       alert(e.message);
-  //       console.error("Error adding document: ", e);
-  //     }
-  // };
 
   const uploadStudentList = async () => {
     let count = 0;
     highCGPAStudents.map(async (student) => {
       try {
         const userDocRef = doc(db, "hostelAllotmentList", student.email);
+        console.log(student.rollNumber);
         await setDoc(userDocRef, {
           branch: student.branch,
           cgpa: student.cgpa,
@@ -88,7 +66,7 @@ const CustomHostelCard = (props) => {
           phoneNumber: item.phoneNumber,
           rating: item.rating,
           reviews: item.reviews,
-          vacancy: item.vacancy-count,
+          vacancy: item.vacancy - count,
         });
 
         console.log("Document written with ID: ", userDocRef.id, index);
@@ -101,7 +79,7 @@ const CustomHostelCard = (props) => {
 
   const getHighCGPAStudents = async () => {
     const studentsRef = collection(db, "users");
-    console.log(typeof item.cgpa);
+    console.log(item.cgpa);
     const q = query(
       studentsRef,
       where("cgpa", ">=", item.cgpa),

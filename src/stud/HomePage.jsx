@@ -41,7 +41,7 @@ const HostelHomePage = ({ navigation }) => {
         </View>
         <Text style={styles.title}>Hostel Allotment</Text>
         <Text style={styles.subtitle}>Find Your Cozy Corner</Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("StudentData")}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("UpdateStudentData")}>
           <Feather name="user" size={24} color="white" />
           <Text style={styles.buttonText}>Update student Data</Text>
         </TouchableOpacity>

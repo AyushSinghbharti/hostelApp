@@ -33,6 +33,8 @@ const UploadStudentData = ({ navigation }) => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [guardianAddress, setGuardianAddress] = useState("");
   const [guardianContactNumber, setGuardianContactNumber] = useState("");
+  const [rollNumber, setRollNumber] = useState("");
+  const [hostelAllotmentStatus, setHostelAllotmentStatus] = useState(false);
 
   useEffect(() => {
     // Fetch data from Firebase here
@@ -57,11 +59,12 @@ const UploadStudentData = ({ navigation }) => {
           setYear(userData.year || "");
           setGender(userData.gender || "gender");
           setSelectedGenderOption(userData.gender || "gender");
-          setCGPA(userData.cgpa || "");
+          setCGPA(userData.cgpa.toString() || "");
           setBranch(userData.branch || "");
-          setMobileNumber(userData.mobileNumber || "");
+          setMobileNumber(userData.mobileNumber.toString() || "");
           setGuardianAddress(userData.guardianAddress || "");
           setGuardianContactNumber(userData.guardianContactNumber || "");
+          setRollNumber(userData.rollNumber.toString() || "");
         });
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -75,23 +78,24 @@ const UploadStudentData = ({ navigation }) => {
   const handleUpload = async () => {
     // Handle Firebase upload here
     setYear(selectedOption);
-    setGender(selectedGenderOption);
-    console.log(gender);
-    console.log(selectedGenderOption);
-    console.log(year);
+    console.log(selectedOption);
     try {
       const userDocRef = doc(db, "users", email);
       await setDoc(userDocRef, {
         studentName: studentName,
         email: email,
-        cgpa: cgpa,
+        cgpa: parseInt(cgpa),
         branch: branch,
-        year: year,
+        year: selectedOption,
         gender: selectedGenderOption,
-        mobileNumber: mobileNumber,
+        mobileNumber: parseInt(mobileNumber),
         guardianAddress: guardianAddress,
         guardianContactNumber: guardianContactNumber,
+        hostelAlloted: hostelAllotmentStatus,
+        rollNumber: parseInt(rollNumber),
       });
+      alert("Data uploaded successfully");
+      navigation.goBack();
       console.log("Document written with ID: ", userDocRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -117,14 +121,15 @@ const UploadStudentData = ({ navigation }) => {
 
   const renderContent = () => {
     return (
-      // <View style={{width: "80%"}}>
       <>
         <View style={styles.heading}>
           <Ionicons
             name="arrow-back"
             size={24}
             color={StudColorTheme.dark}
-            onPress={() => navigation.goBack()}
+            onPress={() => {
+              navigation.goBack();
+            }}
           />
           <Text style={styles.headingText}>Upload Student Data</Text>
         </View>
@@ -142,6 +147,16 @@ const UploadStudentData = ({ navigation }) => {
             placeholder="Student Name"
             value={studentName}
             onChangeText={setStudentName}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <AntDesign name="user" size={24} color="#777" style={styles.icon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Roll Number"
+            value={rollNumber}
+            onChangeText={setRollNumber}
+            keyboardType="number-pad"
           />
         </View>
         <View style={styles.inputContainer}>
@@ -181,12 +196,7 @@ const UploadStudentData = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.inputContainer}>
-          <AntDesign
-            name="man"
-            size={24}
-            color="#777"
-            style={styles.icon}
-          />
+          <AntDesign name="man" size={24} color="#777" style={styles.icon} />
           <TouchableOpacity
             onPress={() => setGenderModalVisible(true)}
             style={styles.dropdownButton}
@@ -357,7 +367,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
-    textAlign: 'center',
+    textAlign: "center",
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",

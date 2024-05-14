@@ -35,7 +35,6 @@ const RegisterPage = ({ navigation }) => {
         updateProfile(auth.currentUser, {
           displayName: name,
         });
-        console.log(user);
       })
       .catch((error) => {
         console.log(error.code, error.message);

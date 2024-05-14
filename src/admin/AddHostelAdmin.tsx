@@ -57,8 +57,6 @@ const AddHostelForm = ({ navigation }) => {
           amenities: amenities,
           reviews: parseInt(reviews),
         });
-        console.log(docRef);
-        console.log("Document written with ID: ", docRef.id);
         alert(`Hostel added successfully, ${docRef.id}`);
       } catch (e) {
         alert(e.message);
@@ -76,15 +74,12 @@ const AddHostelForm = ({ navigation }) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.canceled) {
       const base64 = await FileSystem.readAsStringAsync(result.assets[0].uri, {
         encoding: FileSystem.EncodingType.Base64,
       });
       setImage(result.assets[0].uri);
       setBase64Image(base64);
-      console.log(image);
     }
   };
 
@@ -119,6 +114,7 @@ const AddHostelForm = ({ navigation }) => {
             marginBottom: 10,
             borderWidth: 1,
             borderColor: AdminColorTheme.mainDark,
+            backgroundColor: 'grey',
           }}
         />
         <Feather

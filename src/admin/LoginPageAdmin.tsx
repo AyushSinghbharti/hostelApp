@@ -27,7 +27,6 @@ import {
           const user = userCredential.user;
           alert("Logged in succesfully :) ");
           navigation.navigate("HostelHomeAdmin");
-          console.log(user);
         })
         .catch((error) => {
           console.log(error.code, error.message);

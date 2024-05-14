@@ -12,7 +12,6 @@ import HostelAllotmentPage from "./src/stud/HostelAllotmentPage";
 import LoginPageAdmin from "./src/admin/LoginPageAdmin";
 import RegisterPageAdmin from "./src/admin/RegisterPageAdmin";
 import HostelHomeAdmin from "./src/admin/HomePageAdmin";
-import HostelStatusAdmin from "./src/admin/HostelStatusAdmin";
 import AddHostelPage from "./src/admin/AddHostelAdmin";
 import StudentDataFetch from "./src/admin/StudentData";
 import HostelAllotmentStatus from "./src/admin/HostelAllotmentStatus";
@@ -29,7 +28,7 @@ function App() {
           component={QueryRunningPage}
           options={{ headerShown: false }}
         /> */}
-        {/* <Stack.Screen
+        <Stack.Screen
           name="StartingPage"
           component={StartingPage}
           options={{ headerShown: false }}
@@ -43,7 +42,7 @@ function App() {
             name="RegisterPageAdmin"
             component={RegisterPageAdmin}
             options={{ headerShown: false }}
-          /> */}
+          />
         <Stack.Screen
           name="HostelHomeAdmin"
           component={HostelHomeAdmin}

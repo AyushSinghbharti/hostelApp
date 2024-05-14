@@ -16,7 +16,7 @@ export interface dataType {
 export interface studentDataType {
   studentName: string;
   email: string;
-  RollNumber: number;
+  rollNumber: number;
   cgpa: number;
   gender: string;
   mobileNumber: string;
