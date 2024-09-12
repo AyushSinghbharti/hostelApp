@@ -48,7 +48,7 @@ The Hostel Allotment App is designed to streamline the process of hostel allotme
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/hostel-allotment-app.git
+   git clone https://github.com/AyushSinghbharti/hostelApp.git
    cd hostel-allotment-app
    ```
 
@@ -60,20 +60,19 @@ The Hostel Allotment App is designed to streamline the process of hostel allotme
 
 3. **Set Up Firebase**:
    - Create a Firebase project and configure authentication.
-   - Download the `google-services.json` (for Android) and `GoogleService-Info.plist` (for iOS) files from your Firebase project settings.
-   - Place these files in the appropriate directories:
-     - For Android: `android/app/`
-     - For iOS: `ios/`
+   - Replace your login keys in env file
 
 4. **Run the App**:
-   - For development:
+   - For development locally on machine:
      ```bash
-     expo start
+     npx expo start
      ```
-   - For building the app:
-     ```bash
-     expo build:android
-     expo build:ios
+   - For building the app using development link:
+     ```note
+     Download Expo-Go in your android app then login and scan the below QR code using Expo-Go app. This will open the development version of this app
+     <p align='center'>
+     <img src="https://qr.expo.dev/eas-update?slug=exp&projectId=6c98f041-e088-4db3-9b09-bf41e64ed11f&groupId=274d8609-1e70-451d-b529-39c32b9087e2" alt="Student Dashboard" width="400"/>
+     </p>
      ```
 
 ## Configuration
