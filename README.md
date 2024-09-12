@@ -31,16 +31,17 @@ The Hostel Allotment App is designed to streamline the process of hostel allotme
 ### Admin Interface
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/a3637870-f79f-4ca2-a0d9-6050bdbe6a78" alt="Admin Dashboard" width="320"/>
-  <img src="https://github.com/user-attachments/assets/e0636e9b-b40f-47a3-80ba-9684eee8cda9" alt="Hostel Management" width="320"/>
-  <img src="https://github.com/user-attachments/assets/30b81f75-b3a4-4d16-ae0b-bd6d7cb9227f" alt="Activity Management" width="320"/>
-  <img src="https://github.com/user-attachments/assets/e9543671-3b70-4e76-82a6-5e01a9533578" alt="Student Management" width="320"/>
+  <img src="https://github.com/user-attachments/assets/77401172-0cca-43e2-8bd1-303f75dd1279" alt="Student Dashboard" width="120"/>
+  <img src="https://github.com/user-attachments/assets/a3637870-f79f-4ca2-a0d9-6050bdbe6a78" alt="Admin Dashboard" width="120"/>
+  <img src="https://github.com/user-attachments/assets/e0636e9b-b40f-47a3-80ba-9684eee8cda9" alt="Hostel Management" width="120"/>
+  <img src="https://github.com/user-attachments/assets/30b81f75-b3a4-4d16-ae0b-bd6d7cb9227f" alt="Activity Management" width="120"/>
+  <img src="https://github.com/user-attachments/assets/e9543671-3b70-4e76-82a6-5e01a9533578" alt="Student Management" width="120"/>
 </p>
 
 ### Student Interface
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/77401172-0cca-43e2-8bd1-303f75dd1279" alt="Student Dashboard" width="320"/>
+  
   <!-- Add more screenshots here if available -->
 </p>
 
