@@ -70,10 +70,10 @@ The Hostel Allotment App is designed to streamline the process of hostel allotme
    - For building the app using development link:
      ```note
      Download Expo-Go in your android app then login and scan the below QR code using Expo-Go app. This will open the development version of this app
+     ```
      <p align='center'>
      <img src="https://qr.expo.dev/eas-update?slug=exp&projectId=6c98f041-e088-4db3-9b09-bf41e64ed11f&groupId=274d8609-1e70-451d-b529-39c32b9087e2" alt="Student Dashboard" width="400"/>
      </p>
-     ```
 
 ## Configuration
 
@@ -101,4 +101,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any inquiries or issues, please reach out to:
 
 - **Email**: your-email@example.com
-- **GitHub**: [your-username](https://github.com/your-username)
+- **GitHub**: [ayushsinghbharti](https://github.com/ayushsinghbharti)
